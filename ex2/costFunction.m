@@ -21,11 +21,15 @@ grad = zeros(size(theta));
 %
 
 for i = 1:m,
-    h = sigmoid(theta*x)
+    z = X(i, :) * theta;
+    g = sigmoid(z);
+    log_g = log(g);
+    J = J + (-y(i)*log_g - (1-y(i))*log_g);
 end;
 
+J = J/m;
 
-
+%todo: calculate gradient descent of J
 
 % =============================================================
 
