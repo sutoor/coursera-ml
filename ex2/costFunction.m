@@ -19,18 +19,22 @@ grad = zeros(size(theta));
 %
 % Note: grad should have the same dimensions as theta
 %
-
 for i = 1:m,
-    z = X(i, :) * theta;
-    g = sigmoid(z);
-    log_g = log(g);
-    J = J + (-y(i)*log_g - (1-y(i))*log_g);
+    h = sigmoid(X(i,:) * theta);
+    log_h = log(h);
+    J = J + (-y(i)*log_h - (1-y(i))*log_h);
 end;
-
 J = J/m;
 
-%todo: calculate gradient descent of J
+[m, n] = size(X);
+for j = 1:n,
+    pd_theta = 0;
+    for i = 1:m,
+	pd_theta += (sigmoid(X(i,:) * theta) - y(i)) * X(i,j);
+    end;
+    pd_theta = pd_theta/m;
+    grad(j) = pd_theta;
+end;
 
 % =============================================================
-
 end
