@@ -1,3 +1,4 @@
 *.pdf
 octave-workspace
 *.swp
+.DS_Store
